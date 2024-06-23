@@ -1,0 +1,245 @@
+/* Tires.css */
+
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Navigation Bar Styling */
+nav {
+    background-color: #333;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+nav .logo img {
+    width: 100px;
+}
+
+nav .menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav .menu li {
+    position: relative;
+}
+
+nav .menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+}
+
+nav .menu li a:hover,
+nav .menu li a:focus,
+nav .menu li a:active {
+    background-color: transparent;
+    color: #f5a623;
+    outline: none; /* Removes the default focus outline */
+}
+
+nav .menu .event-section:hover .event-dropdown {
+    display: block;
+}
+
+nav .menu .event-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #444;
+    list-style: none;
+    padding: 10px 0;
+    top: 30px;
+    left: 0;
+}
+
+nav .menu .event-dropdown li {
+    padding: 10px 20px;
+}
+
+nav .menu .event-dropdown li a {
+    color: #fff;
+}
+
+nav .two-section a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+nav .two-section a:hover,
+nav .two-section a:focus,
+nav .two-section a:active {
+    background-color: #f5a623;
+    color: #fff;
+    border: 1px solid #f5a623;
+    outline: none; /* Removes the default focus outline */
+}
+
+nav .NavIcon {
+    display: flex;
+    align-items: center;
+}
+
+nav .NavIcon i {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+/* Container Styling */
+.container3 {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title h2 {
+    font-size: 24px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.Box-Row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.box {
+    width: 22%;
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.box img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.box h3 {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.add-to-cart {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: #0056b3;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+
+/* -----------------------*/
+/* SRART OF THE FOOTER  STYLE
+--------------------------- */
+.footer {
+  background-color: rgb(66, 66, 66);
+  padding: 20px;
+  margin-bottom: -10px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links a{
+	text-decoration:none;
+	margin: 20px;
+	color: #fff;
+}
+.social-icons i {
+  font-size: 24px;
+  color: rgb(255, 255, 255); /* Icon color */
+  margin-right: 20px; /* AdjustÂ spacingÂ */
+}
+
+.social-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+}
+/* -----------------------*/
+/* END OF THE FOOTER  STYLE
+--------------------------- */
+/* Responsive Styling */
+@media (max-width: 1200px) {
+    .box {
+        width: 30%;
+    }
+}
+
+@media (max-width: 768px) {
+    .box {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .box {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    nav .menu {
+        display: none;
+    }
+
+    nav .NavIcon {
+        display: none;
+    }
+
+    nav .two-section {
+        display: none;
+    }
+}

@@ -243,3 +243,37 @@ nav .NavIcon i {
         display: none;
     }
 }
+/* Button Styles */
+.box .btn-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.box .btn-container a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.box .btn-dark {
+    background-color: #333;
+}
+
+.box .btn-dark:hover {
+    background-color: #555;
+}
+
+.box .btn-primary {
+    background-color: #007bff;
+}
+
+.box .btn-primary:hover {
+    background-color: #0056b3;
+}

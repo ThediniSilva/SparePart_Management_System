@@ -15,7 +15,7 @@
     </a>
     <ul class="menu">
         <li><a href="#">HOME</a></li>
-        <li><a href="#">ABOUT US</a></li>
+        <li><a href="AboutUs.jsp">ABOUT US</a></li>
         <li><a href="#">Products</a></li>
         <li class="event-section">
             <a href="#">Shop By Category</a>
@@ -84,7 +84,7 @@
           the right parts for your vehicle, ensuring it stays in top-notch condition. Whether you're a car 
           enthusiast or a professional mechanic, Automate Center is your one-stop destination for all your automotive needs."
           </p>
-          <a href="#" class="About-button"> Know more AboutUs </a>
+          <a href="AboutUs.jsp" class="About-button"> Know more AboutUs </a>
         </div>
       </div>
       </div>

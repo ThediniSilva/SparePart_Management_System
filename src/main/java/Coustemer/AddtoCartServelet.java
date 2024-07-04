@@ -1,7 +1,5 @@
 package Coustemer;
 
-
-//This is Add to cart servelet
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -34,7 +32,7 @@ public class AddtoCartServelet extends HttpServlet {
             // Retrieve session or create new session
             HttpSession session = request.getSession();
             @SuppressWarnings("unchecked")
-			ArrayList<cart> cartList = (ArrayList<cart>) session.getAttribute("cart_list");
+            ArrayList<cart> cartList = (ArrayList<cart>) session.getAttribute("cart_list");
 
             // If cart list is null, initialize it and add the item
             if (cartList == null) {
@@ -59,6 +57,17 @@ public class AddtoCartServelet extends HttpServlet {
                 // Update session attribute
                 session.setAttribute("cart_list", cartList);
             }
+
+            // Update cart item count in session
+            int cartItemCount = 0;
+            for (cart item : cartList) {
+                cartItemCount += item.getQuantity();
+            }
+            session.setAttribute("cartItemCount", cartItemCount);
+
+            // Debugging output
+            out.println("Cart Item Count: " + cartItemCount);
+            out.println("Cart List: " + cartList);
 
             // Redirect to cart.jsp
             response.sendRedirect("cart.jsp");

@@ -90,10 +90,28 @@ nav .two-section a:active {
     outline: none; /* Removes the default focus outline */
 }
 
-nav .NavIcon {
-    display: flex;
-    align-items: center;
-}
+     .NavIcon {
+        position: relative;
+        display: inline-block;
+    }
+
+    .cart-badge {
+        position: absolute;
+        top: -10px; /* Adjust to move vertically closer to the icon */
+        left: -10px; /* Adjust to move horizontally closer to the icon */
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        width: 20px; /* Ensure badge is a circle */
+        height: 20px; /* Ensure badge is a circle */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        line-height: 1; /* Ensures badge is vertically centered */
+    }
+
+
 
 nav .NavIcon i {
     margin-left: 20px;

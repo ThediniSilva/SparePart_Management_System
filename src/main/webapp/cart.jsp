@@ -31,6 +31,7 @@
 <link rel="stylesheet" type="text/css" href="cart.css">
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <nav>
@@ -75,6 +76,7 @@
                         <th scope="col">Price</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Total Price</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,13 +85,18 @@
                         <tr>
                             <td><%= c.getName() %></td>
                             <td>Rs.<%= c.getPrice() %></td>
-                            <td><%= c.getQuantity() %></td>
+                            <td>
+                                <button onclick="updateQuantity(<%= c.getId() %>, -1)">-</button>
+                                <%= c.getQuantity() %>
+                                <button onclick="updateQuantity(<%= c.getId() %>, 1)">+</button>
+                            </td>
                             <td>Rs.<%= c.getPrice() * c.getQuantity() %></td>
+                            <td><button onclick="deleteItem(<%= c.getId() %>)">Delete</button></td>
                         </tr>
                     <% }
                 } else { %>
                     <tr>
-                        <td colspan="4" style="text-align: center;">Your cart is empty.</td>
+                        <td colspan="5" style="text-align: center;">Your cart is empty.</td>
                     </tr>
                 <% } %>
                 </tbody>
@@ -116,5 +123,43 @@
         </div>
     </footer>
     <!-- END FOOTER -->
+
+    <script>
+        function updateQuantity(productId, change) {
+            $.ajax({
+                url: 'UpdateCartServlet',
+                method: 'POST',
+                data: { id: productId, change: change },
+                success: function(response) {
+                    if(response === 'success') {
+                        location.reload();
+                    } else {
+                        console.error('Error updating quantity');
+                    }
+                },
+                error: function() {
+                    console.error('AJAX request failed');
+                }
+            });
+        }
+
+        function deleteItem(productId) {
+            $.ajax({
+                url: 'DeleteCartItemServlet',
+                method: 'POST',
+                data: { id: productId },
+                success: function(response) {
+                    if(response === 'success') {
+                        location.reload();
+                    } else {
+                        console.error('Error deleting item');
+                    }
+                },
+                error: function() {
+                    console.error('AJAX request failed');
+                }
+            });
+        }
+    </script>
 </body>
 </html>

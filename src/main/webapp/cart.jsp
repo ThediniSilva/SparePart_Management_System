@@ -3,8 +3,7 @@
 <%@page import="Coustemer.productDbUtil"%>
 <%@page import="Coustemer.cart"%>
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <%
     ArrayList<cart> cart_list = (ArrayList<cart>) session.getAttribute("cart_list");
@@ -15,7 +14,7 @@
         productDbUtil pdao = new productDbUtil(databaseConnection.getConnection());
         cartProduct = pdao.getAllcartProducts(cart_list);
         request.setAttribute("cartProduct", cartProduct);
-        
+
         // Calculate total price
         for (cart c : cartProduct) {
             totalPrice += c.getPrice() * c.getQuantity();
@@ -54,20 +53,20 @@
         </ul>
 
         <div class="two-section">
-            <a href="register.jsp" class="signup" type="button">SignUp</a> 
-            <a href="Login.jsp" class="Login">LogIn</a>
+            <a href="register.jsp" class="signup" type="button">SignUp</a> <a
+                href="Login.jsp" class="Login">LogIn</a>
         </div>
         <div class="NavIcon">
             <a href="cart.jsp"> <i class="fa fa-shopping-cart fa-lg"
                 style="margin-right: 30px; color: rgb(255, 255, 255);"></i>
-            </a> 
-            <i class="fa fa-user fa-lg" style="color: rgb(255, 255, 255);"></i>
+            </a> <i class="fa fa-user fa-lg" style="color: rgb(255, 255, 255);"></i>
         </div>
     </nav>
 
     <div class="container">
         <div class="d-flex py-3">
-            <h3>Total Price: Rs.<%= totalPrice %></h3>
+            <h3>
+                Total Price: Rs.<%= totalPrice %></h3>
             <a class="mx-3 btn btn-primary" href="#"> Check Out </a>
             <table>
                 <thead>
@@ -80,26 +79,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                <% if (cartProduct != null) {
-                    for (cart c : cartProduct) { %>
-                        <tr>
-                            <td><%= c.getName() %></td>
-                            <td>Rs.<%= c.getPrice() %></td>
-                            <td>
-                                <button onclick="updateQuantity(<%= c.getId() %>, -1)">-</button>
-                                <%= c.getQuantity() %>
-                                <button onclick="updateQuantity(<%= c.getId() %>, 1)">+</button>
-                            </td>
-                            <td>Rs.<%= c.getPrice() * c.getQuantity() %></td>
-                            <td><button onclick="deleteItem(<%= c.getId() %>)">Delete</button></td>
-                        </tr>
-                    <% }
-                } else { %>
+                    <%
+                    if (cartProduct != null) {
+                        for (cart c : cartProduct) {
+                    %>
+                    <tr>
+                        <td><%=c.getName()%></td>
+                        <td>Rs.<%=c.getPrice()%></td>
+                        <td>
+                            <button onclick="updateQuantity(<%=c.getId()%>, -1)">-</button>
+                            <%=c.getQuantity()%>
+                            <button onclick="updateQuantity(<%=c.getId()%>, 1)">+</button>
+
+                            <!-- Form to handle the buy button click -->
+                            <form action="order-now" method="post" style="display: inline;">
+                                <input type="hidden" name="productId" value="<%=c.getId()%>">
+                                <input type="hidden" name="quantity" value="<%=c.getQuantity()%>">
+                                <button type="submit">Buy</button>
+                            </form>
+                        </td>
+                        <td>Rs.<%=c.getPrice() * c.getQuantity()%></td>
+                        <td><button onclick="deleteItem(<%=c.getId()%>)">Delete</button></td>
+                    </tr>
+                    <%
+                        }
+                    } else {
+                    %>
                     <tr>
                         <td colspan="5" style="text-align: center;">Your cart is empty.</td>
                     </tr>
-                <% } %>
+                    <%
+                    } 
+                    %>
                 </tbody>
+
             </table>
         </div>
     </div>
@@ -110,15 +123,13 @@
             <p class="copyright" style="color: #fff">&copy; 2023 Your
                 Company. All rights reserved.</p>
             <div class="footer-links">
-                <a href="./feedback.php">Feedback</a> 
-                <a href="./Terms and conditions.php">Terms and condition</a> 
-                <a href="./privacy.php">Privacy and Policy</a>
+                <a href="./feedback.php">Feedback</a> <a
+                    href="./Terms and conditions.php">Terms and condition</a> <a
+                    href="./privacy.php">Privacy and Policy</a>
             </div>
             <div class="social-icons">
-                <i class="fab fa-facebook"></i> 
-                <i class="fab fa-twitter"></i> 
-                <i class="fab fa-google"></i> 
-                <i class="fab fa-linkedin"></i>
+                <i class="fab fa-facebook"></i> <i class="fab fa-twitter"></i> <i
+                    class="fab fa-google"></i> <i class="fab fa-linkedin"></i>
             </div>
         </div>
     </footer>

@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class OrderNowServlet
@@ -57,6 +59,14 @@ public class OrderNowServlet extends HttpServlet {
             boolean result = orderDbUtil.insertOrder(orderModel);
 
             if (result) {
+                // Update the session cart list
+                HttpSession session = request.getSession();
+                ArrayList<cart> cartList = (ArrayList<cart>) session.getAttribute("cart_list");
+                if (cartList != null) {
+                    cartList.removeIf(cartItem -> cartItem.getId() == Integer.parseInt(productId));
+                    session.setAttribute("cart_list", cartList);
+                }
+
                 out.print("success");
             } else {
                 out.print("failure: database insertion error");

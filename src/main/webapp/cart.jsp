@@ -65,7 +65,7 @@
 
     <div class="container">
         <div class="d-flex py-3">
-            <h3>
+            <h3 id="total-price">
                 Total Price: Rs.<%= totalPrice %></h3>
             <a class="mx-3 btn btn-primary" href="#"> Check Out </a>
             <table>
@@ -78,12 +78,12 @@
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="cart-items">
                     <%
                     if (cartProduct != null) {
                         for (cart c : cartProduct) {
                     %>
-                    <tr>
+                    <tr id="cart-item-<%=c.getId()%>">
                         <td><%=c.getName()%></td>
                         <td>Rs.<%=c.getPrice()%></td>
                         <td>
@@ -92,13 +92,13 @@
                             <button onclick="updateQuantity(<%=c.getId()%>, 1)">+</button>
 
                             <!-- Form to handle the buy button click -->
-                            <form action="order-now" method="post" style="display: inline;">
+                            <form onsubmit="return buyProduct(<%=c.getId()%>, <%=c.getQuantity()%>, <%=c.getPrice()%>)" style="display: inline;">
                                 <input type="hidden" name="productId" value="<%=c.getId()%>">
                                 <input type="hidden" name="quantity" value="<%=c.getQuantity()%>">
                                 <button type="submit">Buy</button>
                             </form>
                         </td>
-                        <td>Rs.<%=c.getPrice() * c.getQuantity()%></td>
+                        <td class="item-total-price">Rs.<%=c.getPrice() * c.getQuantity()%></td>
                         <td><button onclick="deleteItem(<%=c.getId()%>)">Delete</button></td>
                     </tr>
                     <%
@@ -170,6 +170,37 @@
                     console.error('AJAX request failed');
                 }
             });
+        }
+
+        function buyProduct(productId, quantity, price) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+            $.ajax({
+                url: 'order-now',
+                method: 'POST',
+                data: {
+                    productId: productId,
+                    quantity: quantity
+                },
+                success: function(response) {
+                    if(response === 'success') {
+                        alert('Item added successfully');
+                        var itemTotalPrice = price * quantity;
+                        $('#cart-item-' + productId).remove(); // Remove the item from the cart
+
+                        // Update the total price
+                        var currentTotalPrice = parseFloat($('#total-price').text().replace('Total Price: Rs.', ''));
+                        var newTotalPrice = currentTotalPrice - itemTotalPrice;
+                        $('#total-price').text('Total Price: Rs.' + newTotalPrice.toFixed(2));
+                    } else {
+                        alert('Failed to add item: ' + response);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert('AJAX request failed: ' + textStatus + ', ' + errorThrown);
+                    console.log('AJAX error details:', jqXHR, textStatus, errorThrown); // Log detailed AJAX error
+                }
+            });
+            return false; // Prevent the form from submitting the traditional way
         }
     </script>
 </body>

@@ -1,0 +1,93 @@
+@charset "ISO-8859-1";
+
+/*----------------------------------
+        Signup box
+------------------------------------*/
+.bg-grandiant {
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(#fbfb42, #fdfda3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0; /* Add some padding to avoid overlap with the footer */
+}
+
+.container {
+    width: 100%;
+    max-width: 400px; /* Adjusted the max-width */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: transparent;
+    backdrop-filter: blur(5px);
+    text-align: center;
+}
+
+.text-medium {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+    text-align: left;
+}
+
+.left-box {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    background: transparent;
+    backdrop-filter: blur(20px);
+}
+
+h1 {
+    color: #333;
+    font-size: 40px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    height: 25px;
+    margin-bottom: 10px;
+    padding: 5px; /* Add some padding */
+    border-radius: 3px; /* Add border-radius for better appearance */
+    border: 1px solid #ccc; /* Add border */
+    box-sizing: border-box;
+}
+
+/*----------------------------------
+        Submit button
+------------------------------------*/
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none; /* Corrected border to none */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.text-submit {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+}
+
+.right-box {
+    float: right; /* Float the right column to the left */
+    width: 30%; /* Set the width of the right column */
+    padding: 20px; /* Add some padding for spacing */
+}
+
+/* Style the image within the right column */
+.right-box img {
+    width: 600px;
+    height: 600px;
+    display: block; /* Remove any extra spacing around the image */
+}
